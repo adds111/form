@@ -25,8 +25,7 @@ class RegController extends Controller
 
         $user = User::create($validateVal);
 
-        if ($user)
-        {
+        if ($user) {
             Auth::login($user);
             $files = Storage::Files('public/txt');
             $dirs = Storage::directories('public/txt');
@@ -48,7 +47,7 @@ class RegController extends Controller
         ]);
         $id = DB::table('users')->where('login',$req->input('login'))->first();
 
-           if($validateVal) {
+           if ($validateVal) {
                Auth::loginUsingId($id->id);
                $files = Storage::Files('public/txt');
                $dirs = Storage::directories('public/txt');
@@ -60,25 +59,20 @@ class RegController extends Controller
     }
     public function download(Request $file)
     {
-        if(Auth::check())
+        if (Auth::check())
         {
             $value = $file->input('file');
-            if (Storage::exists($value))
-            {
-                if (preg_match('/\./', $value))
-                {
+            if (Storage::exists($value)) {
+                if (preg_match('/\./', $value)) {
                     return Storage::download($value);
-                }
-                else
-                {
+                } else {
                     $files = Storage::Files($value);
                     $dirs = Storage::directories($value);
                     return view('private', ['files' => $files, 'dirs' => $dirs]);
                 }
             }
         }
-        else
-        {
+        else {
         return  view('login');
         }
 
