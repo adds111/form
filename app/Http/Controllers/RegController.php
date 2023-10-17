@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -31,8 +32,24 @@ class RegController extends Controller
             return view('private' , ['files' => $files, 'dirs' => $dirs]);
         }
         return view('login');
-
-
+    }
+    public function upload(Request $req)
+    {
+         $req->validate([
+            'file' => 'file'
+         ]);
+         if(Auth::check()){
+             $path = Storage::putFileAs('public/txt/'.$req->input('filePath'), $req->file('file') , $req->input('fileName'));
+             $files = Storage::Files('public/txt');
+             $dirs = Storage::directories('public/txt');
+             if ($path) {
+                 return view('private', ['files' => $files, 'dirs' => $dirs])->with('success' , 'файл загружен успешно');
+             }else{
+                 return view('private', ['files' => $files, 'dirs' => $dirs])->withErrors(['formError' => 'ошибка при сохранении файла']);
+             }
+         }else{
+             return view('login')->withErrors(['authError' => 'Ошибка, войдите в систему']);
+         }
     }
 
     public function loginq(Request $req)

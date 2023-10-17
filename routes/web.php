@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Storage;
         })->name('reg');
 
         Route::get('/Download/', '\App\Http\Controllers\RegController@download');
+        Route::post('/upload', '\App\Http\Controllers\RegController@upload');
 
         Route::get('/logout', function ()
         {
