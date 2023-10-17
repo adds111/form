@@ -1,9 +1,6 @@
 @extends('layouts.base')
 @section('content')
 
-    @if(session('message'))
-        <p>{{  session('message') }}</p>
-    @endif
     <h1 class="h1">Авторизация</h1>
     <form method="post"  action="/login" class="p-3 border rounded" id="form" >
         @csrf
@@ -25,7 +22,6 @@
 
                 <a href="/reg" class="btn btn-primary mt-3 ">Регистрация</a>
             </div>
-
         </div>
     </form>
 
