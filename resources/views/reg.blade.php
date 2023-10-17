@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+
     <h1 class="h1">Регистрация</h1>
     <form method="post"  action="/reg" >
           @csrf
@@ -22,4 +23,5 @@
             </div>
         </div>
     </form>
+
 @endsection

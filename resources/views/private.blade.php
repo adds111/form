@@ -20,4 +20,5 @@
     <button class="arr btn btn-primary b">
         <img src="{{asset('img/arrow-right_icon-icons.com_72375.svg')}}" height="21" width="38">
     </button>
+
 @endsection

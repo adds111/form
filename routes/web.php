@@ -15,13 +15,12 @@ use Illuminate\Support\Facades\Storage;
 */
     Route::get('/', function ()
     {
-
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        $files = Storage::Files('public/txt');
-        $dirs = Storage::directories('public/txt');
-        return view('private' , ['files' => $files, 'dirs' => $dirs]);
-    }
-    return view('login');
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            $files = Storage::Files('public/txt');
+            $dirs = Storage::directories('public/txt');
+            return view('private' , ['files' => $files, 'dirs' => $dirs]);
+        }
+        return view('login');
     })->name('login');
 
     Route::name('user.')->group(function ()
@@ -54,8 +53,8 @@ use Illuminate\Support\Facades\Storage;
 
         Route::get('/logout', function ()
         {
-           Auth::logout();
-           return redirect('/');
+            Auth::logout();
+            return redirect('/');
         })->name('logout');
         Route::post('/reg', '\App\Http\Controllers\RegController@saveVal');
     });

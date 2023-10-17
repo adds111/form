@@ -1,5 +1,3 @@
-
-
 @extends('layouts.base')
 @section('content')
 
@@ -30,7 +28,6 @@
 
         </div>
     </form>
-
 
 @endsection
 

@@ -11,9 +11,8 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-5">
-                @include('err')
-
-                @yield('content')
+                    @include('err')
+                    @yield('content')
                 </div>
 
             </div>

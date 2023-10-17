@@ -13,8 +13,7 @@ class RegController extends Controller
 {
     public function saveVal(Request $req)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             return redirect()->intended('private');
         }
         $validateVal = $req->validate([
@@ -59,8 +58,7 @@ class RegController extends Controller
     }
     public function download(Request $file)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $value = $file->input('file');
             if (Storage::exists($value)) {
                 if (preg_match('/\./', $value)) {
